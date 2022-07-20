@@ -97,13 +97,14 @@ export default function Cart(props) {
                       {state.inCartItems[i].instructor}
                     </td>
                     <td id="item-price text-center align-middle">
-                      <span className="block">
-                        €{state.inCartItems[i].price}
-                      </span>
+                      €{state.inCartItems[i].price}
                       {discount !== null && discount !== 0 ? (
-                        <span className="text-red-600 ml-1 text-xs">
-                          (-€{discount})
-                        </span>
+                        <>
+                          <br />
+                          <span className="text-red-600 ml-1 text-xs">
+                            (-€{discount})
+                          </span>
+                        </>
                       ) : null}
                     </td>
                     {/* .toLocaleString("en-US") */}

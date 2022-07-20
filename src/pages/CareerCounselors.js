@@ -34,7 +34,9 @@ export default function CareerCounselors({ careerCounselorsData }) {
                 <div className="w-full bg-gradient-to-r from-indigo-200 to-purple-200 flex justify-center p-4 rounded-t-2xl">
                   <span className="overflow-hidden w-52 h-52 flex justify-center bg-gray-100 border border-gray-200 shadow-xl rounded-full">
                     <img
-                      src={`/img/career-counselor-${i + 1}.png`}
+                      src={`${process.env.PUBLIC_URL}/img/career-counselor-${
+                        i + 1
+                      }.png`}
                       className="w-48 h-48 m-2"
                       alt="counselor"
                     />

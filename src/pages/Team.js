@@ -40,7 +40,7 @@ export default function Team() {
                         <div className="w-full bg-gray-200 flex justify-center p-4 rounded-2xl bg-gradient-to-tl from-yellow-100 to-gray-800">
                           <span className="overflow-hidden w-52 h-52 flex justify-center bg-gray-100 border border-gray-200 shadow-xl rounded-full">
                             <img
-                              src="/img/translator-1.png"
+                              src={`${process.env.PUBLIC_URL}/img/translator-1.png`}
                               className="w-48 h-48 m-2"
                               alt="teacher"
                             />
@@ -64,7 +64,7 @@ export default function Team() {
                         <div className="w-full bg-gray-200 flex justify-center p-4 rounded-2xl bg-gradient-to-tr from-yellow-100 to-gray-600">
                           <span className="overflow-hidden w-52 h-52 flex justify-center bg-gray-100 border border-gray-200 shadow-xl rounded-full">
                             <img
-                              src="/img/career-counselor-2.png"
+                              src={`${process.env.PUBLIC_URL}/img/career-counselor-2.png`}
                               className="w-48 h-48 m-2"
                               alt="translator"
                             />
@@ -88,7 +88,7 @@ export default function Team() {
                         <div className="w-full bg-gray-200 flex justify-center p-4 rounded-2xl bg-gradient-to-bl from-sky-100 to-gray-800">
                           <span className="overflow-hidden w-52 h-52 flex justify-center bg-gray-100 border border-gray-200 shadow-xl rounded-full">
                             <img
-                              src="/img/career-abroad.png"
+                              src={`${process.env.PUBLIC_URL}/img/career-abroad.png`}
                               className="w-48 h-48 m-2"
                               alt="career-counselor"
                             />
@@ -112,7 +112,7 @@ export default function Team() {
                         <div className="w-full bg-gray-200 flex justify-center p-4 rounded-2xl bg-gradient-to-br from-blue-100 to-pink-800">
                           <span className="overflow-hidden w-52 h-52 flex justify-center bg-gray-100 border border-gray-200 shadow-xl rounded-full">
                             <img
-                              src="/img/support.png"
+                              src={`${process.env.PUBLIC_URL}/img/support.png`}
                               className="w-48 h-48 m-2"
                               alt="community-manager"
                             />

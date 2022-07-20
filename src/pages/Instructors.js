@@ -34,7 +34,7 @@ export default function Instructors({ instructorsData }) {
                 <div className="w-full bg-gradient-to-r from-sky-200 to-blue-200 flex justify-center p-4 rounded-t-2xl">
                   <span className="overflow-hidden w-52 h-52 flex justify-center bg-gray-100 border border-gray-200 shadow-xl rounded-full">
                     <img
-                      src={`/img/teacher-${i + 1}.png`}
+                      src={`${process.env.PUBLIC_URL}/img/teacher-${i + 1}.png`}
                       className="w-48 h-48 m-2"
                       alt="teacher"
                     />

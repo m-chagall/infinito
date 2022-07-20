@@ -34,7 +34,9 @@ export default function Translators({ translatorsData }) {
                 <div className="w-full bg-gradient-to-r from-green-200 to-emerald-200 flex justify-center p-4 rounded-t-2xl">
                   <span className="overflow-hidden w-52 h-52 flex justify-center bg-gray-100 border border-gray-200 shadow-xl rounded-full">
                     <img
-                      src={`/img/translator-${i + 1}.png`}
+                      src={`${process.env.PUBLIC_URL}/img/translator-${
+                        i + 1
+                      }.png`}
                       className="w-48 h-48 m-2"
                       alt="translator"
                     />

@@ -62,7 +62,7 @@ export default function HomeCarousel() {
             {/* <!-- Item 1 --> */}
             <div className="relative w-[100vw]">
               <img
-                src="/img/carousel-1.jpg"
+                src={process.env.PUBLIC_URL + "/img/carousel-1.jpg"}
                 className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
                 alt="..."
               />
@@ -70,7 +70,7 @@ export default function HomeCarousel() {
             {/* <!-- Item 2 --> */}
             <div className="relative w-[100vw]">
               <img
-                src="/img/carousel-2.jpg"
+                src={process.env.PUBLIC_URL + "/img/carousel-2.jpg"}
                 className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
                 alt="..."
               />
@@ -78,7 +78,7 @@ export default function HomeCarousel() {
             {/* <!-- Item 3 --> */}
             <div className="relative w-[100vw]">
               <img
-                src="/img/carousel-3.jpg"
+                src={process.env.PUBLIC_URL + "/img/carousel-3.jpg"}
                 className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
                 alt="..."
               />
@@ -86,7 +86,7 @@ export default function HomeCarousel() {
             {/* <!-- Item 4 --> */}
             <div className="relative w-[100vw]">
               <img
-                src="/img/carousel-4.jpg"
+                src={process.env.PUBLIC_URL + "/img/carousel-4.jpg"}
                 className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
                 alt="..."
               />
@@ -94,7 +94,7 @@ export default function HomeCarousel() {
             {/* <!-- Item 5 --> */}
             <div className="relative w-[100vw]">
               <img
-                src="/img/carousel-5.jpg"
+                src={process.env.PUBLIC_URL + "/img/carousel-5.jpg"}
                 className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
                 alt="..."
               />

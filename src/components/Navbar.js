@@ -684,7 +684,7 @@ function Hamburger({
               }}>
               <img
                 className="flex-shrink-0 object-cover mx-1 rounded-full w-10 h-10"
-                src="/img/avatar_01.png"
+                src={process.env.PUBLIC_URL + "/img/avatar_01.jpg"}
                 alt={`${user} avatar`}
               />
             </button>
