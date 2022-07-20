@@ -19,15 +19,11 @@ import LoginEN from "./pages/LoginEN.js";
 import Register from "./pages/Register.js";
 import MyClassroom from "./pages/MyClassroom.js";
 import Cart from "./pages/Cart.js";
-// import Translators from './pages/Translators.js';
-// import Instructors from './pages/Instructor.js';
-// import Careercounselors from './pages/CareerCounselors.js';
 
 /* components */
 import Navbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
 import Top from "./components/Top.js";
-import Calculator from "./components/Calculator";
 
 /* utils */
 import CourseData from "./utils/CourseData.js";
