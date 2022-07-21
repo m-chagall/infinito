@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/infinito/static/css/main.7cd804f4.css",
+    "main.js": "/infinito/static/js/main.d7917530.js",
+    "static/js/787.081191d4.chunk.js": "/infinito/static/js/787.081191d4.chunk.js",
+    "index.html": "/infinito/index.html",
+    "main.7cd804f4.css.map": "/infinito/static/css/main.7cd804f4.css.map",
+    "main.d7917530.js.map": "/infinito/static/js/main.d7917530.js.map",
+    "787.081191d4.chunk.js.map": "/infinito/static/js/787.081191d4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7cd804f4.css",
+    "static/js/main.d7917530.js"
+  ]
+}
