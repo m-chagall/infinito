@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem } from "./../store/inCartItems.js";
+import { Helmet } from "react-helmet";
 
 function Courses(props) {
   let [courseOption, setCourseOption] = useState("hot");
