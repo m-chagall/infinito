@@ -51,7 +51,7 @@ export default function Navbar(props) {
             </button>
             <div className="flex items-center justify-items-start order-2">
               {/* Menu tab (left) */}
-              <ul className="hidden lg:flex md:space-x-4 md:font-medium">
+              <ul className="hidden md:flex md:space-x-4 md:font-medium">
                 {/* About */}
                 <li
                   className="relative hover:bg-gray-100 dark:hover:bg-emerald-100"
@@ -684,7 +684,7 @@ function Hamburger({
               }}>
               <img
                 className="flex-shrink-0 object-cover mx-1 rounded-full w-10 h-10"
-                src={process.env.PUBLIC_URL + "/img/avatar_01.jpg"}
+                src={process.env.PUBLIC_URL + "/img/avatar_01.png"}
                 alt={`${user} avatar`}
               />
             </button>
