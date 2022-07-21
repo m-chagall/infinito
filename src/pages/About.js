@@ -15,8 +15,8 @@ export default function About() {
           backgroundImage: `url(${process.env.PUBLIC_URL + "/img/about.jpg"})`,
         }}>
         {/* Text area */}
-        <div className="absolute w-2/3 flex justify-center items-center top-28 left-60 sm:left-36">
-          <p className="text-white text-start text-3xl font-extrabold sm:text-4xl lg:text-6xl">
+        <div className="absolute w-3/4 flex justify-center items-center top-1/4 sm:left-24">
+          <p className="text-white text-start text-3xl font-extrabold sm:text-4xl xl:text-5xl">
             We help students and professionals learn foreign languages and make
             connections around the world.
           </p>
