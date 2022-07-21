@@ -5,6 +5,15 @@ export default function Login() {
   let navigate = useNavigate();
   return (
     <>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=0"
+        />
+        <title>Log In</title>
+      </Helmet>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>

@@ -13,7 +13,7 @@ export default function LoginKR() {
           name="viewport"
           content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=0"
         />
-        <title>Login</title>
+        <title>로그인</title>
       </Helmet>
       <div className="min-h-full pt-20 pb-40 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
         <div className="max-w-md w-full space-y-8">

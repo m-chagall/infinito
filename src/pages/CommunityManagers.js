@@ -1,6 +1,15 @@
 export default function CommunityManagers({ communityManagersData }) {
   return (
     <>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=0"
+        />
+        <title>Community Managers</title>
+      </Helmet>
       {/* Top */}
       <div className="w-full flex h-[40vh] p-12 bg-gradient-to-r from-yellow-200 to-orange-400 lg:px-36 2xl:px-60 ">
         {/* Text area */}
