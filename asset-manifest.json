@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/infinito/static/css/main.7cd804f4.css",
-    "main.js": "/infinito/static/js/main.fff5928c.js",
+    "main.js": "/infinito/static/js/main.8576f507.js",
     "static/js/787.081191d4.chunk.js": "/infinito/static/js/787.081191d4.chunk.js",
     "index.html": "/infinito/index.html",
     "main.7cd804f4.css.map": "/infinito/static/css/main.7cd804f4.css.map",
-    "main.fff5928c.js.map": "/infinito/static/js/main.fff5928c.js.map",
+    "main.8576f507.js.map": "/infinito/static/js/main.8576f507.js.map",
     "787.081191d4.chunk.js.map": "/infinito/static/js/787.081191d4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7cd804f4.css",
-    "static/js/main.fff5928c.js"
+    "static/js/main.8576f507.js"
   ]
 }
