@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Footer(props) {
+  let navigate = useNavigate();
   return (
     <>
       <footer className="bg-white px-2 py-4 rounded-lg md:px-6 md:py-8 dark:bg-gray-800">
