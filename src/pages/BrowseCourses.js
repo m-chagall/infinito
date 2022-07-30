@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import {
   FaClipboardList,
   FaRegCreditCard,
@@ -7,11 +7,13 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { addItem } from "./../store/inCartItems.js";
+import { addItem } from "../store/inCartItems.js";
 import { Helmet } from "react-helmet";
+import CourseDetail from "./CourseDetail.js";
 
-function Courses(props) {
+export default function BrowseCourses(props) {
   let [courseOption, setCourseOption] = useState("hot");
+
   let navigate = useNavigate();
   /* redux */
   let dispatch = useDispatch();
@@ -21,6 +23,7 @@ function Courses(props) {
 
   let [added, setAdded] = useState(false);
   let [exist, setExist] = useState(false);
+  let selectedItemId = "";
 
   useEffect(() => {
     return () => {
@@ -38,11 +41,12 @@ function Courses(props) {
   }, [exist]);
 
   const handleViewCourse = (e) => {
-    console.log("view course");
+    selectedItemId = parseInt(e.target.getAttribute("data-id"));
+    navigate(`/courses/${selectedItemId}`);
   };
 
   const handleAddToCart = (e) => {
-    let selectedItemId = parseInt(e.target.getAttribute("data-id"));
+    selectedItemId = parseInt(e.target.getAttribute("data-id"));
     for (let i = 0; i < state.inCartItems.length; ++i) {
       if (selectedItemId === state.inCartItems[i].id) {
         setExist(true);
@@ -67,97 +71,110 @@ function Courses(props) {
         />
         <title>Courses</title>
       </Helmet>
-      <div
-        style={{
-          backgroundImage: `url(${
-            process.env.PUBLIC_URL + "/img/image-3.jpg"
-          })`,
-        }}
-        className="py-10 bg-scroll bg-cover bg-center relative bg-before">
-        {added ? (
-          <div className="relative bg-blue-400/30 px-4 py-1 text-fuchsia-50 rounded-xl">
-            Successfully added to cart.
-          </div>
-        ) : null}
-        {exist ? (
-          <div className="relative bg-pink-400/30 px-4 py-1 text-fuchsia-50 rounded-xl">
-            Item already in cart.
-          </div>
-        ) : null}
-        <div className="relative my-5 px-2 max-w-md mx-auto text-start md:max-w-2xl lg:max-w-4xl">
-          <span className="text-2xl font-extrabold tracking-wide text-fuchsia-50">
-            BEST
-          </span>
-        </div>
-        <MainCoursesFR
-          courseData={props.courseData}
-          handleAddToCart={handleAddToCart}
-          handleViewCourse={handleViewCourse}
-          navigate={navigate}
-          added={added}
-          exist={exist}
-        />
-      </div>
+      <Routes>
+        <Route
+          index
+          element={
+            <>
+              <div
+                style={{
+                  backgroundImage: `url(${
+                    process.env.PUBLIC_URL + "/img/image-3.jpg"
+                  })`,
+                }}
+                className="py-10 bg-scroll bg-cover bg-center relative bg-before">
+                {added ? (
+                  <div className="relative bg-blue-400/30 px-4 py-1 text-fuchsia-50 rounded-xl">
+                    Successfully added to cart.
+                  </div>
+                ) : null}
+                {exist ? (
+                  <div className="relative bg-pink-400/30 px-4 py-1 text-fuchsia-50 rounded-xl">
+                    Item already in cart.
+                  </div>
+                ) : null}
+                <div className="relative my-5 px-2 max-w-md mx-auto text-start md:max-w-2xl lg:max-w-4xl">
+                  <span className="text-2xl font-extrabold tracking-wide text-fuchsia-50">
+                    BEST
+                  </span>
+                </div>
+                <MainCoursesFR
+                  courseData={props.courseData}
+                  handleAddToCart={handleAddToCart}
+                  handleViewCourse={handleViewCourse}
+                  navigate={navigate}
+                  added={added}
+                  exist={exist}
+                />
+              </div>
 
-      <hr className="mx-auto w-3/4" />
-      <div className="my-5 px-2 max-w-md mx-auto text-start md:max-w-2xl lg:max-w-4xl">
-        <span className="text-xl font-extrabold tracking-wide">
-          ALL COURSES
-        </span>
-        <ul className="flex py-2 mx-auto space-x-2">
-          <li className="-ml-1 p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
-            <button
-              type="button"
-              onClick={() => {
-                setCourseOption("hot");
-              }}>
-              HOT
-            </button>
-          </li>
-          <li className="p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
-            <button
-              type="button"
-              onClick={() => {
-                setCourseOption("elementary");
-              }}>
-              A1/A2
-            </button>
-          </li>
-          <li className="p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
-            <button
-              type="button"
-              onClick={() => {
-                setCourseOption("intermediate");
-              }}>
-              B1/B2
-            </button>
-          </li>
-          <li className="p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
-            <button
-              type="button"
-              onClick={() => {
-                setCourseOption("advanced");
-              }}>
-              C1
-            </button>
-          </li>
-          <li className="p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
-            <button
-              type="button"
-              onClick={() => {
-                setCourseOption("careers");
-              }}>
-              WORK IN EUROPE
-            </button>
-          </li>
-        </ul>
-      </div>
-      <CoursesFR
-        courseData={props.courseData}
-        courseOption={courseOption}
-        handleAddToCart={handleAddToCart}
-        handleViewCourse={handleViewCourse}
-      />
+              <hr className="mx-auto w-3/4" />
+              <div className="my-5 px-2 max-w-md mx-auto text-start md:max-w-2xl lg:max-w-4xl">
+                <span className="text-xl font-extrabold tracking-wide">
+                  ALL COURSES
+                </span>
+                <ul className="flex py-2 mx-auto space-x-2">
+                  <li className="-ml-1 p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCourseOption("hot");
+                      }}>
+                      HOT
+                    </button>
+                  </li>
+                  <li className="p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCourseOption("elementary");
+                      }}>
+                      A1/A2
+                    </button>
+                  </li>
+                  <li className="p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCourseOption("intermediate");
+                      }}>
+                      B1/B2
+                    </button>
+                  </li>
+                  <li className="p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCourseOption("advanced");
+                      }}>
+                      C1
+                    </button>
+                  </li>
+                  <li className="p-1 text-sm font-bold hover:animate-pulse hover:shadow-xl hover:bg-gray-100">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCourseOption("careers");
+                      }}>
+                      WORK IN EUROPE
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <CoursesFR
+                courseData={props.courseData}
+                courseOption={courseOption}
+                handleAddToCart={handleAddToCart}
+                handleViewCourse={handleViewCourse}
+              />
+            </>
+          }
+        />
+        <Route
+          path=":courseId"
+          element={<CourseDetail courseData={props.courseData} />}
+        />
+      </Routes>
     </>
   );
 }
@@ -178,7 +195,7 @@ function MainCoursesFR({
             <>
               <div
                 className="relative my-5 min-w-96 mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl lg:max-w-4xl"
-                key={i}>
+                key={`main-${i}`}>
                 <div className="md:flex items-center">
                   {/* Course image */}
                   <div className="flex items-center md:shrink-0 ">
@@ -192,7 +209,7 @@ function MainCoursesFR({
                   </div>
                   {/* Course description */}
                   <div className="p-6 w-full">
-                    <a href="/" className="">
+                    <button onClick={handleViewCourse}>
                       <p className="hidden">{courseData[i].id}</p>
                       <h4 className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                         {courseData[i].category}
@@ -203,35 +220,29 @@ function MainCoursesFR({
                       <p className="mt-2 text-sm text-slate-500">
                         {courseData[i].summary}
                       </p>
-                    </a>
-                    <ul className="mt-2 gap-x-4 text-sm flex justify-center items-center">
-                      <li>
-                        <button
-                          type="button"
-                          className="p-2 hover:shadow rounded-xl">
-                          <FaClipboardList className="h-4 w-4 mx-1 inline" />
-                          SYLLABUS
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          type="button"
-                          className="p-2 hover:shadow rounded-xl">
-                          <FaRegCreditCard className="h-4 w-4 mx-1 inline" />
-                          ENROLL
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          type="button"
-                          className="p-2 hover:shadow rounded-xl"
-                          data-id={`${courseData[i].id}`}
-                          onClick={handleAddToCart}>
-                          <FaShoppingCart className="h-4 w-4 mx-1 inline" />
-                          ADD TO CART
-                        </button>
-                      </li>
-                    </ul>
+                    </button>
+                    <div className="mt-2 gap-x-4 text-sm flex justify-center items-center">
+                      <button
+                        type="button"
+                        className="p-2 hover:shadow rounded-xl">
+                        <FaClipboardList className="h-4 w-4 mx-1 inline" />
+                        SYLLABUS
+                      </button>
+                      <button
+                        type="button"
+                        className="p-2 hover:shadow rounded-xl">
+                        <FaRegCreditCard className="h-4 w-4 mx-1 inline" />
+                        ENROLL
+                      </button>
+                      <button
+                        type="button"
+                        className="p-2 hover:shadow rounded-xl"
+                        data-id={`${courseData[i].id}`}
+                        onClick={handleAddToCart}>
+                        <FaShoppingCart className="h-4 w-4 mx-1 inline" />
+                        ADD TO CART
+                      </button>
+                    </div>
                     <button
                       type="button"
                       className="nav-font text-xs relative px-4 py-1 mt-2 rounded bg-black text-white"
@@ -273,7 +284,7 @@ function CoursesFR({ courseData, courseOption, handleViewCourse }) {
                   return (
                     <div
                       className="my-5 w-96 max-w-md mx-auto bg-white rounded-lg border border-gray-200 shadow-md md:w-80 lg:w-[400px] dark:bg-gray-800 dark:border-gray-700"
-                      key={i}>
+                      key={`course-${i}`}>
                       {/* Course image */}
                       <div className="">
                         <img
@@ -296,7 +307,7 @@ function CoursesFR({ courseData, courseOption, handleViewCourse }) {
                         <button
                           type="button"
                           className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                          id={`item-${courseData[i].id}`}
+                          data-id={`${courseData[i].id}`}
                           onClick={handleViewCourse}>
                           View Course
                           <FaArrowRight className="ml-2 -mr-1 w-4 h-4" />
@@ -311,7 +322,7 @@ function CoursesFR({ courseData, courseOption, handleViewCourse }) {
                   return (
                     <div
                       className="my-5 w-96 max-w-md mx-auto bg-white rounded-lg border border-gray-200 shadow-md md:w-80 lg:w-[400px] dark:bg-gray-800 dark:border-gray-700"
-                      key={i}>
+                      key={`course-${i}`}>
                       {/* Course image */}
                       <div className="">
                         <img
@@ -334,7 +345,7 @@ function CoursesFR({ courseData, courseOption, handleViewCourse }) {
                         <button
                           type="button"
                           className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-                          id={`item-${courseData[i].id}`}
+                          data-id={`${courseData[i].id}`}
                           onClick={handleViewCourse}>
                           View Course
                           <FaArrowRight className="ml-2 -mr-1 w-4 h-4" />
@@ -351,5 +362,3 @@ function CoursesFR({ courseData, courseOption, handleViewCourse }) {
     </div>
   );
 }
-
-export default Courses;
