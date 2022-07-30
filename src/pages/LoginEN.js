@@ -27,11 +27,12 @@ export default function Login() {
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or{" "}
-              <button className="font-medium text-blue-600 hover:text-blue-500">
-                start your 7-day free trial onClick=
-                {() => {
-                  navigate("/");
-                }}
+              <button
+                className="font-medium text-blue-600 hover:text-blue-500"
+                onClick={() => {
+                  navigate("/register");
+                }}>
+                create your account and start 7-day free trial.
               </button>
             </p>
           </div>
