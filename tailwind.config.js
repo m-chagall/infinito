@@ -17,6 +17,7 @@ module.exports = {
         "5xl": "64rem",
         "128": "32rem",
         "160": "40rem",
+        "256": "64rem",
         "inherit": "inherit",
       },
       minWidth: {
