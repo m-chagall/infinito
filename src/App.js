@@ -4,10 +4,11 @@ import "./tailwind.css";
 
 import { Suspense, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 /* pages */
-import Courses from "./pages/Courses.js";
+import BrowseCourses from "./pages/BrowseCourses.js";
+import CourseDetail from "./pages/CourseDetail";
 import About from "./pages/About.js";
 import Community from "./pages/Community.js";
 import Team from "./pages/Team.js";
@@ -19,6 +20,7 @@ import LoginEN from "./pages/LoginEN.js";
 import Register from "./pages/Register.js";
 import MyClassroom from "./pages/MyClassroom.js";
 import Cart from "./pages/Cart.js";
+import NotFound from "./pages/NotFound";
 
 /* components */
 import Navbar from "./components/Navbar.js";
@@ -35,6 +37,8 @@ function App() {
   let [quotes, setQuotes] = useState(Quotes);
   let [hidden, setHidden] = useState(true);
   let [showBanner, setShowBanner] = useState(true);
+
+  let [nav, setNav] = useState(null);
 
   return (
     <div className="App ">
@@ -53,6 +57,9 @@ function App() {
         setHidden={setHidden}
         showBanner={showBanner}
         setShowBanner={setShowBanner}
+        courseData={courseData}
+        nav={nav}
+        setNav={setNav}
       />
 
       <div id="main">
@@ -70,9 +77,17 @@ function App() {
               />
               <Route path="/about" element={<About />} />
               <Route
-                path="/courses"
-                element={<Courses courseData={courseData} />}
-              />
+                path="/courses/*"
+                element={<BrowseCourses courseData={courseData} nav={nav} />}>
+                {/* <Route
+                  index
+                  element={<BrowseCourses courseData={courseData} />}
+                />
+                <Route
+                  path=":courseId"
+                  element={<CourseDetail courseData={courseData} />}
+                /> */}
+              </Route>
               <Route path="/team/*" element={<Team />} />
               <Route path="/community" element={<Community />} />
               <Route path="/translation" element={<Translation />} />
@@ -87,8 +102,7 @@ function App() {
             <Route path="/polyverse" element= {<Polyverse />}/>
             <Route path="/daily/expressions" element= {<Expressions />}/>
             <Route path="/daily/news" element= {<News />}/> */}
-
-              {/* <Route path="/calculator" element={<Calculator />} /> */}
+              <Route path="*" element={<NotFound />}></Route>
             </Routes>
           </Suspense>
         ) : null}
