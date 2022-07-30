@@ -29,6 +29,15 @@ export default function Navbar(props) {
 
   let navigate = useNavigate();
 
+  const handleViewCourse = (e) => {
+    console.log(e.currentTarget);
+    let selectedItemId = parseInt(e.currentTarget.getAttribute("data-id"));
+    console.log(selectedItemId);
+    // props.setNav(parseInt(selectedItemId));
+    navigate(`/courses/${selectedItemId}`);
+    setShowDropdownCourses(false);
+  };
+
   return (
     <>
       <nav className="fixed z-100 left-0 right-0 top-0 bg-white dark:bg-gray-800 mb-28">
@@ -95,6 +104,8 @@ export default function Navbar(props) {
                     <DropdownCourses
                       navigate={navigate}
                       setShowDropdownCourses={setShowDropdownCourses}
+                      courseData={props.courseData}
+                      handleViewCourse={handleViewCourse}
                     />
                   ) : null}
                 </li>
@@ -137,7 +148,7 @@ export default function Navbar(props) {
                     navigate("/login");
                   }}
                   className="py-2 px-3 hover:shadow text-gray-700 bg-transparent hover:text-blue-800 hover:animate-pulse dark:text-white">
-                  <span className="">Log In</span>
+                  <span className="">Login</span>
                 </button>
               </li>
               <li className="">
@@ -182,11 +193,16 @@ export default function Navbar(props) {
     </>
   );
 }
-function DropdownCourses({ navigate, setShowDropdownCourses }) {
+function DropdownCourses({
+  navigate,
+  setShowDropdownCourses,
+  courseData,
+  handleViewCourse,
+}) {
   return (
     <div
       id="dropdownCourses"
-      className={`absolute flex w-192 -left-20 -bottom-30 rounded-xl z-10 bg-white text-start divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}>
+      className={`absolute flex w-256 -left-20 -bottom-30 rounded-xl z-10 bg-white text-start divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}>
       {/* #1 */}
       <div className="w-1/3">
         <h2 className="p-4 pb-2 text-indigo-600 font-extrabold">
@@ -195,88 +211,32 @@ function DropdownCourses({ navigate, setShowDropdownCourses }) {
         <ul
           className="px-4 text-sm text-gray-700 dark:text-gray-400 "
           aria-labelledby="dropdownLargeButton">
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Le français dans la vie</h4>
-              <p className="text-gray-500 font-normal text-xs">프랑스어 입문</p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Compréhension écrite</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 독해 (초급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Compréhension orale</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 청해 (초급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Production écrite</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 작문 (초급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Production orale</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 회화 (초급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Grammaire & Vocabulaire</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 문법/어휘 (초급)
-              </p>
-            </button>
-          </li>
+          {courseData.map((a, i) => {
+            if (courseData[i].level === "elementary") {
+              return (
+                <li className="" key={i}>
+                  <button
+                    type="button"
+                    data-id={`${courseData[i].id}`}
+                    onClick={handleViewCourse}
+                    className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
+                    <h4
+                      className="font-bold"
+                      // data-id={`${courseData[i].id}`}
+                    >
+                      {courseData[i].category}
+                    </h4>
+                    <p
+                      className="text-gray-500 font-normal text-xs"
+                      // data-id={`${courseData[i].id}`}
+                    >
+                      {courseData[i].categoryKR}
+                    </p>
+                  </button>
+                </li>
+              );
+            } else return null;
+          })}
         </ul>
       </div>
 
@@ -288,76 +248,28 @@ function DropdownCourses({ navigate, setShowDropdownCourses }) {
         <ul
           className="px-4 text-sm text-gray-700 dark:text-gray-400 "
           aria-labelledby="dropdownLargeButton">
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Compréhension écrite</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 독해 (중급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Compréhension orale</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 청해 (중급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Production écrite</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 작문 (중급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Production orale</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 회화 (중급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Grammaire & Vocabulaire</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 문법/어휘 (중급)
-              </p>
-            </button>
-          </li>
+          {courseData.map((a, i) => {
+            if (courseData[i].level === "intermediate") {
+              return (
+                <li className="" key={i}>
+                  <button
+                    type="button"
+                    data-id={`${courseData[i].id}`}
+                    onClick={handleViewCourse}
+                    className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
+                    <h4 className="font-bold" data-id={`${courseData[i].id}`}>
+                      {courseData[i].category}
+                    </h4>
+                    <p
+                      className="text-gray-500 font-normal text-xs"
+                      data-id={`${courseData[i].id}`}>
+                      {courseData[i].categoryKR}
+                    </p>
+                  </button>
+                </li>
+              );
+            } else return null;
+          })}
         </ul>
       </div>
       <div className="w-1/3">
@@ -365,76 +277,28 @@ function DropdownCourses({ navigate, setShowDropdownCourses }) {
         <ul
           className="px-4 text-sm text-gray-700 dark:text-gray-400 "
           aria-labelledby="dropdownLargeButton">
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Compréhension écrite</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 독해 (고급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Compréhension orale</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 청해 (고급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Production écrite</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 작문 (고급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Production orale</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 회화 (고급)
-              </p>
-            </button>
-          </li>
-          <li className="">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/");
-                setShowDropdownCourses(false);
-              }}
-              className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
-              <h4 className="font-bold">Grammaire & Vocabulaire</h4>
-              <p className="text-gray-500 font-normal text-xs">
-                프랑스어 문법/어휘 (고급)
-              </p>
-            </button>
-          </li>
+          {courseData.map((a, i) => {
+            if (courseData[i].level === "advanced") {
+              return (
+                <li className="" key={i}>
+                  <button
+                    type="button"
+                    data-id={`${courseData[i].id}`}
+                    onClick={handleViewCourse}
+                    className="py-2 text-start text-black bg-transparent hover-underline-animation hover:text-indigo-900 dark:text-white">
+                    <h4 className="font-bold" data-id={`${courseData[i].id}`}>
+                      {courseData[i].category}
+                    </h4>
+                    <p
+                      className="text-gray-500 font-normal text-xs"
+                      data-id={`${courseData[i].id}`}>
+                      {courseData[i].categoryKR}
+                    </p>
+                  </button>
+                </li>
+              );
+            } else return null;
+          })}
         </ul>
       </div>
     </div>
