@@ -41,7 +41,7 @@ export default function HomeCarousel() {
         {/* <!-- Carousel wrapper --> */}
         <div className="overflow-hidden">
           <div
-            className="relative w-[500vw] flex h-48 rounded-lg sm:h-64 xl:h-80 2xl:h-96"
+            className="relative w-[500vw] flex h-48 rounded-lg sm:h-64 xl:h-80 2xl:h-96 cursor-grab active:cursor-grabbing"
             ref={slideRef}
             onDragStart={(e) => {
               setMouseDown(true);
@@ -57,6 +57,7 @@ export default function HomeCarousel() {
             onDragEnd={() => {
               if (distance > 10) PreviousSlide();
               else if (distance < -10) NextSlide();
+              else setDistance(0);
               setMouseDown(false);
             }}>
             {/* <!-- Item 1 --> */}
